@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<!--
+Created using JS Bin
+http://jsbin.com
+
+Copyright (c) 2021 by anonymous (http://jsbin.com/kajukalagi/1/edit)
+
+Released under the MIT license: http://jsbin.mit-license.org
+-->
+<meta name="robots" content="noindex">
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width">
+  <title>JS Bin</title>
+</head>
+<body>
+
+<script id="jsbin-javascript">
+// using js promise
+/*const promise = new Promise( resolve => { 
+  setTimeout(()=>{
+    resolve('mr John')
+  }, 500)
+})
+
+promise.then(result => {
+  console.log('promise '+result);
+})*/
+
+// using rxjs observable
+/*const observerble = new Rx.Observable(observer => {
+     setTimeout(()=>{
+     observer.next('mr John')
+  }, 500) 
+})
+
+observerble.subscribe(result => {
+  console.log("observer: "+result)
+})*/
+
+// so why we need rxjs ?
+
+// promises can only return one
+const promise = new Promise( resolve => { 
+  setTimeout(()=>{
+    resolve('mr A2')
+    resolve('mr B2')
+    resolve('mr C2')
+    resolve('mr D2')
+  }, 500)
+})
+
+promise.then(result => {
+  console.log('promise '+result);
+})
+
+// observer can do better. 
+//it can return multiple ever after returning once
+const observerble = new Rx.Observable(observer => {
+     setTimeout(()=>{
+     observer.next('mr A')
+     observer.next('mr B')
+     observer.next('ms C')
+     //observer.next('mr D')
+  }, 500) 
+})
+
+observerble.subscribe(result => {
+  console.log("observer: "+result)
+  
+// filter
+observerble
+  .filter( result=>result.substring(0,2) == 'ms')
+    .subscribe(result=>{
+    console.log('observer '+result)
+})
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+})
+
+</script>
+</body>
+</html>

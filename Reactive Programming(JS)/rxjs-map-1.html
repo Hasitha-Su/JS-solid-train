@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<!--
+Created using JS Bin
+http://jsbin.com
+
+Copyright (c) 2021 by anonymous (http://jsbin.com/quhisugaso/1/edit)
+
+Released under the MIT license: http://jsbin.mit-license.org
+-->
+<meta name="robots" content="noindex">
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width">
+  <title>JS Bin</title>
+</head>
+<body>
+<script src="https://unpkg.com/@reactivex/rxjs@5.0.3/dist/global/Rx.js"></script>
+
+<script id="jsbin-javascript">
+const observerble = new Rx.Observable(observer => {
+     setTimeout(()=>{
+     observer.next('mr A')
+     observer.next('ms A')
+     observer.next('mr B')
+     observer.next('ms C')
+     //observer.next('mr D')
+  }, 500) 
+})
+
+// filter and map
+observerble
+  .filter( result=>result.substring(0,2) == 'ms')
+    .map(result=>'prof. '+result)
+    .subscribe(result=>{
+    console.log('observer: '+result)
+})
+</script>
+</body>
+</html>
