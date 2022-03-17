@@ -1,0 +1,16 @@
+<script>
+
+    //outer function
+    var addTo = function(passed){
+
+        //inner function
+        var add = function(inner){
+            return passed + inner;
+        }
+
+        return add;
+    }
+
+    addTo(3)
+
+</script>
